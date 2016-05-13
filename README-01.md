@@ -23,16 +23,17 @@
 
 <h3>Importing the Minimob ad-serving module to your project</h3>
 <p>You can import the required Minimob ad-serving module either manually or automatically.</p>
-<h5>Manually</h5>
+<h5>Importing the source code</h5>
 <p>First, download the current project from Github and import the <strong>minimob-adserving</strong> module to your project.</p>
 <p>Then, assuming you are using <strong>Gradle</strong>, go to the <strong>build.gradle</strong> script file of your app module and add the following line in the <strong>dependencies</strong> block:</p>
 <pre class="prettyprint linenums=5"><code>
 compile project(':minimob-adserving')
- 
+
 </code></pre>
 
-<h5>Automatically</h5>
-<p>If you are using <strong>Gradle</strong>, you can automatically import the module. </p>
+<h5>Retrieving from online repositories</h5>
+<p>If you are using <strong>Gradle</strong>, you can automatically import the module from a Github or a Maven repository. </p>
+<h6>From Github repository</h6>
 <ul>
 <li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
 </ul>
@@ -59,6 +60,15 @@ allprojects {
 
 </code></pre>
 
+<h6>From Maven repository</h6>
+<ul>
+<li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
+</ul>
+<pre class="prettyprint linenums=5"><code>
+compile 'com.minimob.adserving:minimob-adserving:1.0.26'
+
+</code></pre>
+
 <h3>Requesting, loading and displaying video ads from Minimob</h3>
 <p>Two distinct cases are distinguished:</p>
 <ul>
@@ -72,17 +82,18 @@ allprojects {
 <pre class="prettyprint linenums=5"><code>
 // Create a method and include the following
 
-    // Use setAdZoneCreatedListener of MinimobAdController and override the onAdZoneCreated method. In this method the adZone is returned.
+// Use setAdZoneCreatedListener of MinimobAdController and override the onAdZoneCreated method
     MinimobAdController.getInstance().setAdZoneCreatedListener(new IAdZoneCreatedListener()
     {
+// In this method, the adZone is returned
         @Override
         public void onAdZoneCreated(AdZone adZone)
         {
             adZoneVideo = (AdZoneVideo) adZone;
             if (adZoneVideo != null)
             {
-
-                // Optionally, set listeners for events such as: ads available, ads NOT available, video playing, video finished, video closed. This enables you to customize the user experience according to the needs of your app.
+// Optionally, set listeners for events such as: ads available, ads NOT available, video playing, video finished, video closed.
+// This enables you to customize the user experience according to the needs of your app.
                 adZoneVideo.setAdsAvailableListener(new IAdsAvailableListener() {
                     @Override
                     public void onAdsAvailable(AdZone adZone) {
@@ -108,14 +119,12 @@ allprojects {
                     public void onVideoClosed(AdZone adZone) {
                     }
                 });
-
-                // Load and show the video ad
+// Load and show the video ad
                 adZoneVideo.show();
             }
         }
     });
-
-    // Copy the JavaScript Ad Tag that is given at the corresponding Ad Zone under Monetize &gt; Video Ads of the Minimob dashboard, and paste it at the adTagString
+// Copy the JavaScript Ad Tag that is given at the corresponding Ad Zone under Monetize &gt; Video Ads of the Minimob dashboard, and paste it at the adTagString
     String adTagString = "&lt;script&gt; \n" +
                     " var mmAdTagSettings = { \n" +
                     " imei: \"[imei]\", \n" +
@@ -151,19 +160,16 @@ allprojects {
                     " placement: \"video fullscreen interstitial\"}; \n" +
                     " &lt;/script&gt; \n" +
                     " &lt;script id=\"sdk-loader\" onerror=\"if(typeof(mmji)!='undefined'){mmji.noAds()}\" type=\"text/javascript\" src=\"http://s-dev.rtad.bid/assets/video-fullscreen-mmji.js\"&gt;&lt;/script&gt;";
-
-    // Create the AdTag object. You will need a Context as a parameter. If you are in an Activity, you can use the Activity itself and if you are on a Fragment, use getContext()
+// Create the AdTag object. You will need a Context as a parameter. If you are in an Activity, you can use the Activity itself and if you are on a Fragment, use getContext()
     AdTag adTag = new AdTag(getContext(), adTagString);
-
-    // Optionally, specify the Custom tracking data, as well as Age, Category and Gender
+// Optionally, specify the Custom tracking data, as well as Age, Category and Gender
     adTag.setCustomTrackingData("some tracking data");
     adTag.setAge("user age");
     adTag.setCategory("advertised apps category");
-    adTag.setGender("suser age");
-
-    // Create the AdZone. The getVideo method needs an Activity as a parameter. If you are in an Activity, you will use the Activity itself and if you are on a Fragment, use getActivity().
+    adTag.setGender("user gender");
+// Create the AdZone. The getVideo method needs an Activity as a parameter.
+// If you are in an Activity, you will use the Activity itself and if you are on a Fragment, use getActivity().
     MinimobAdController.getInstance().getVideo(getActivity(), adTag);
-
 
 </code></pre>
 
@@ -173,17 +179,18 @@ allprojects {
 <pre class="prettyprint linenums=5"><code>
 // Create a method and include the following
 
-    // Use setAdZoneCreatedListener of MinimobAdController and override the onAdZoneCreated method. In this method the adZone is returned.
+// Use setAdZoneCreatedListener of MinimobAdController and override the onAdZoneCreated method
     MinimobAdController.getInstance().setAdZoneCreatedListener(new IAdZoneCreatedListener()
     {
+// In this method, the adZone is returned
         @Override
         public void onAdZoneCreated(AdZone adZone)
         {
             adZoneVideoPreloaded = (AdZoneVideoPreloaded) adZone;
             if (adZoneVideoPreloaded != null)
             {
-
-                // Optionally, set listeners for events such as: ads available, ads NOT available, video loading, video loaded, video playing, video finished, video closed. This enables you to customize the user experience according to the needs of your app.
+// Optionally, set listeners for events such as: ads available, ads NOT available, video loading, video loaded, video playing, video finished, video closed.
+// This enables you to customize the user experience according to the needs of your app.
                 adZoneVideoPreloaded.setAdsAvailableListener(new IAdsAvailableListener()
                 {
                     @Override
@@ -208,7 +215,7 @@ allprojects {
                 adZoneVideoPreloaded.setVideoPlayingListener(new IVideoPlayingListener() {
                     @Override
                     public void onVideoPlaying(AdZone adZone) {
-                        // e.g. have the method call itself, in order to preload the next video
+// e.g. have the method call itself, in order to preload the next video
                     }
                 });
                 adZoneVideoPreloaded.setVideoFinishedListener(new IVideoFinishedListener() {
@@ -219,17 +226,15 @@ allprojects {
                 adZoneVideoPreloaded.setVideoClosedListener(new IVideoClosedListener() {
                     @Override
                     public void onVideoClosed(AdZone adZone) {
-                        // e.g. have the method call itself, in order to preload the next video
+// e.g. have the method call itself, in order to preload the next video
                     }
                 });
-
-                // Load the video ad
+// Load the video ad
                 adZoneVideoPreloaded.load();
             }
         }
     });
-
-    // Copy the JavaScript Ad Tag that is given at the corresponding Ad Zone under Monetize &gt; Video Ads of the Minimob dashboard, and paste it at the adTagString
+// Copy the JavaScript Ad Tag that is given at the corresponding Ad Zone under Monetize &gt; Video Ads of the Minimob dashboard, and paste it at the adTagString
     String adTagString = "&lt;script&gt; \n" +
                     " var mmAdTagSettings = { \n" +
                     " imei: \"[imei]\", \n" +
@@ -265,27 +270,21 @@ allprojects {
                     " placement: \"video fullscreen interstitial\"}; \n" +
                     " &lt;/script&gt; \n" +
                     " &lt;script id=\"sdk-loader\" onerror=\"if(typeof(mmji)!='undefined'){mmji.noAds()}\" type=\"text/javascript\" src=\"http://s-dev.rtad.bid/assets/video-fullscreen-mmji.js\"&gt;&lt;/script&gt;";
-
-    // Create the AdTag object. You will need a Context as a parameter. If you are in an Activity, you can use the Activity itself and if you are on a Fragment, use getContext()
+// Create the AdTag object. You will need a Context as a parameter. If you are in an Activity, you can use the Activity itself and if you are on a Fragment, use getContext()
     AdTag adTag = new AdTag(getContext(), adTagString);
-
-    // Optionally, specify the Custom tracking data, as well as Age, Category and Gender
+// Optionally, specify the Custom tracking data, as well as Age, Category and Gender
     adTag.setCustomTrackingData("some tracking data");
     adTag.setAge("user age");
     adTag.setCategory("advertised apps category");
-    adTag.setGender("suser age");
-
-    // Create the AdZone. The getVideo method needs an Activity as a parameter. If you are in an Activity, you will use the Activity itself and if you are on a Fragment, use getActivity().
+    adTag.setGender("user gender");
+// Create the AdZone. The getVideo method needs an Activity as a parameter. If you are in an Activity, you will use the Activity itself and if you are on a Fragment, use getActivity().
     MinimobAdController.getInstance().getVideo(getActivity(), adTag);
-
 
 </code></pre>
 
 <p>Finally, at the point in your code where you want to show the video ad, you need to call the <strong>adZoneVideoPreloaded.show</strong> method. </p>
 <pre class="prettyprint linenums=5"><code>
 // assuming that you want to show the preloaded video when the user clicks the video_btnFullscreen_play button
-</code></pre>
-<pre class="prettyprint linenums=5"><code>
 video_btnFullscreen_play = (Button) _activity.findViewById(R.id.video_btnFullscreen_play_preloaded);
 video_btnFullscreen_play.setOnClickListener(new View.OnClickListener()
 {
@@ -293,8 +292,7 @@ video_btnFullscreen_play.setOnClickListener(new View.OnClickListener()
     public void onClick(View view)
     {
         if (adZoneVideoPreloaded != null) {
-
-            // Show the video ad
+// Show the video ad
             adZoneVideoPreloaded.show();
         }
     }
@@ -663,5 +661,3 @@ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.</p>
 <p>For more information, please refer to <a href="http://unlicense.org/#">http://unlicense.org</a> </p>
-
-
