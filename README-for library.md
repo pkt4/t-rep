@@ -3,24 +3,20 @@
 <p>The JavaScript Ad Tag is a static script for requesting and displaying an ad within an HTML-based page. For implementing this, it is required to insert the JavaScript Ad Tag into the html code of a mobile web application or mobile in-app web controller. </p>
 <p>Note that this method is intended for real time ad serving and presentation, between the Minimob ad servers and mobile devices.  It cannot be used for server-to-server batch retrieval of ads. For each ad impression, a separate request must be made to the ad servers, supplying all the required information plus any additional data, if available. By specifying values at the parameters included at the ad tag, an application can forward extra information towards the ad servers, which can be useful for delivering better targeted ads.</p>
 <p>In case of preloading ads to an app, the lifetime of ads delivered should not exceed 5 minutes. If an application is open for periods longer than this duration, the app should refresh the presented ads at regular intervals well under that limit.</p>
-
 <h3>Prerequisites</h3>
 <p>Before you proceed, make sure that you already have:</p>
 <ol>
-<li>Registered to Minimob </li>
-<li>Created an app under <strong>Monetize &gt; Video Ads</strong> </li>
-<li>Created an ad zone under an app</li>
+    <li>Registered to Minimob </li>
+    <li>Created an app under <strong>Monetize &gt; Video Ads</strong> </li>
+    <li>Created an ad zone under an app</li>
 </ol>
-
 <p>Then, follow the instructions given in this guide for enabling your app to request and display video ads from Minimob.</p>
-
 <h3>Workflow overview</h3>
 <p>When developing your app, you need to carry out the following tasks:</p>
 <ol>
-<li>Import the Minimob ad-serving module to your project</li>
-<li>Use the imported module for requesting, loading and displaying video ads from Minimob </li>
+    <li>Import the Minimob ad-serving module to your project</li>
+    <li>Use the imported module for requesting, loading and displaying video ads from Minimob</li>
 </ol>
-
 <h3>Importing the Minimob ad-serving module to your project</h3>
 <p>You can import the required Minimob ad-serving module either from the source code or from online repositories.</p>
 <h5>Importing the source code</h5>
@@ -30,21 +26,16 @@
 compile project(':minimob-adserving')
 
 </code></pre>
-
 <h5>Retrieving from online repositories</h5>
 <p>If you are using <strong>Gradle</strong>, you can automatically import the module from a Github or a Maven repository. </p>
 <h6>From Github repository</h6>
 <ul>
-<li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
-</ul>
+    <li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
 <pre class="prettyprint linenums=5"><code>
 compile 'com.github.minimob:video-ad-serving:1.0.26'
 
 </code></pre>
-
-<ul>
-<li>At the <strong>build.gradle</strong> script file of your <em>project</em>, add the following line in the <strong>repositories</strong> block:</li>
-</ul>
+    <li>At the <strong>build.gradle</strong> script file of your <em>project</em>, add the following line in the <strong>repositories</strong> block:</li>
 <pre class="prettyprint linenums=5"><code>
  maven { url "https://jitpack.io" }
 
@@ -59,23 +50,19 @@ allprojects {
 }
 
 </code></pre>
-
 <h6>From Maven repository</h6>
-<ul>
-<li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
-</ul>
+    <li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
 <pre class="prettyprint linenums=5"><code>
 compile 'com.minimob.adserving:minimob-adserving:1.0.26'
 
 </code></pre>
-
+</ul>
 <h3>Requesting, loading and displaying video ads from Minimob</h3>
 <p>Two distinct cases are distinguished:</p>
 <ul>
-<li><strong>Video ad</strong>: a single call –  <strong>.show ()</strong> – is used for loading and showing a video ad </li>
-<li><strong>Preloaded video ad</strong>: two separate calls are used, one for loading a video ad – <strong>.load()</strong> – and another for showing the video ad – <strong>.show()</strong> </li>
+    <li><strong>Video ad</strong>: a single call –  <strong>.show ()</strong> – is used for loading and showing a video ad </li>
+    <li><strong>Preloaded video ad</strong>: two separate calls are used, one for loading a video ad – <strong>.load()</strong> – and another for showing the video ad – <strong>.show()</strong> </li>
 </ul>
-
 <h5>Video ad </h5>
 <p>First, instantiate the <strong>AdZoneVideo</strong> class in your desired scope, named, for example, <strong>adZoneVideo</strong>.</p>
 <p>Then, at the point in your code where you want to show the video ad, include the following lines.</p>
@@ -172,7 +159,6 @@ compile 'com.minimob.adserving:minimob-adserving:1.0.26'
     MinimobAdController.getInstance().getVideo(getActivity(), adTag);
 
 </code></pre>
-
 <h5>Preloaded video ad</h5>
 <p>First, instantiate the <strong>AdZoneVideo</strong> class in your desired scope, named, for example, <strong>adZoneVideo</strong>.</p>
 <p>Then, at the point in your code where you want to preload the video ad, include the following lines.</p>
@@ -282,7 +268,6 @@ compile 'com.minimob.adserving:minimob-adserving:1.0.26'
     MinimobAdController.getInstance().getVideo(getActivity(), adTag);
 
 </code></pre>
-
 <p>Finally, at the point in your code where you want to show the video ad, you need to call the <strong>adZoneVideoPreloaded.show</strong> method. </p>
 <pre class="prettyprint linenums=5"><code>
 // assuming that you want to show the preloaded video when the user clicks the video_btnFullscreen_play button
@@ -300,14 +285,12 @@ video_btnFullscreen_play.setOnClickListener(new View.OnClickListener()
 });
 
 </code></pre>
-
 <h3>Ad Tag parameters</h3>
 <p>The JavaScript Ad Tag of an ad zone holds the following variables:</p>
 <ul>
-<li><strong>mmAdTagSettings</strong>: this variable contains parameters that are optional. They are used to pass extra information, such as device or user information, which can then be utilized by Minimob in order to return more relevant ads.</li>
-<li><strong>mmAdTagSettings_auto</strong>: this variable contains parameters that are mandatory. These parameters are automatically generated by Minimob and <strong>you should NOT modify them</strong>.</li>
+    <li><strong>mmAdTagSettings</strong>: this variable contains parameters that are optional. They are used to pass extra information, such as device or user information, which can then be utilized by Minimob in order to return more relevant ads.</li>
+    <li><strong>mmAdTagSettings_auto</strong>: this variable contains parameters that are mandatory. These parameters are automatically generated by Minimob and <strong>you should NOT modify them</strong>.</li>
 </ul>
-
 <h5>mmAdTagSettings Parameters</h5>
 <p> </p>
 <table>
@@ -404,7 +387,6 @@ Should be used together with the <strong>lat</strong> parameter.</td>
     <td>Integer</td>
     <td>The width of the mobile device, in physical pixels</td>
     <td>"1440"
-
 </td>
   </tr>
   <tr>
@@ -412,7 +394,6 @@ Should be used together with the <strong>lat</strong> parameter.</td>
     <td>Integer</td>
     <td>The height of the mobile device, in physical pixels</td>
     <td>"2560"
-
 </td>
   </tr>
   <tr>
@@ -421,7 +402,6 @@ Should be used together with the <strong>lat</strong> parameter.</td>
     <td>The mobile network code of the mobile network operator of the mobile device
 It is used in combination with the mobile country code (MCC) to uniquely identify the mobile phone operator/carrier.</td>
     <td>"260"
-
 </td>
   </tr>
   <tr>
@@ -430,7 +410,6 @@ It is used in combination with the mobile country code (MCC) to uniquely identif
     <td>The mobile country code of the mobile network operator of the mobile device
 It is used in combination with the mobile network code (MNC) to uniquely identify the mobile phone operator/carrier.</td>
     <td>" 310"
-
 </td>
   </tr>
   <tr>
@@ -440,7 +419,6 @@ It is used in combination with the mobile network code (MNC) to uniquely identif
 true: indicates that the device is currently connected to the internet via WiFi
 false: indicates that the current network connection of the device is NOT via WiFi </td>
     <td>"true"
-
 </td>
   </tr>
   <tr>
@@ -449,7 +427,6 @@ false: indicates that the current network connection of the device is NOT via Wi
     <td>[iOS only]
 The iOS version of the operating system of the device </td>
     <td>"7.1.2"
-
 </td>
   </tr>
   <tr>
@@ -458,7 +435,6 @@ The iOS version of the operating system of the device </td>
     <td>[android only]
 The android version of the operating system of the device</td>
     <td>"4.4.2"
-
 </td>
   </tr>
   <tr>
@@ -466,7 +442,6 @@ The android version of the operating system of the device</td>
     <td>Integer</td>
     <td>The width of the advertising area within the app, where the ads are placed, in pixels</td>
     <td>"720"
-
 </td>
   </tr>
   <tr>
@@ -490,8 +465,6 @@ false: indicates that the requested video ad will NOT be preloaded</td>
     <td>"00000000-5a19-dc1b-ffff-ffffef05ac4a"</td>
   </tr>
 </table>
-
-
 <h5>mmAdTagSettings_auto Parameters</h5>
 <p> </p>
 <table>
@@ -546,7 +519,6 @@ false: for blocking video media supported ads</td>
     <td> "video fullscreen interstitial" </td>
   </tr>
 </table>
-
 <h3>Examples</h3>
 <p>Here is an indicative example of an Ad Tag. </p>
 <blockquote><strong>Warning</strong>: Dummy Ids have been used in this example, so do not use it as is. Please navigate to Minimob’s Monetization dashboard for Video Ads and use the ad tag that is displayed at the details of the corresponding Ad Zone.</blockquote>
@@ -589,7 +561,6 @@ false: for blocking video media supported ads</td>
 &lt;script id="sdk-loader" onerror="if(typeof(mmji)!='undefined'){mmji.noAds()}" type="text/javascript" src="http://s.rtad.bid/assets/video-fullscreen-mmji.js"&gt;&lt;/script&gt;
 
 </code></pre>
-
 <p>Here is an indicative example of generated html code.</p>
 <blockquote><strong>Warning</strong>: Dummy Ids have been used in this example.</blockquote>
 <pre class="prettyprint linenums=5"><code>
@@ -637,10 +608,8 @@ false: for blocking video media supported ads</td>
 &lt;/html&gt;
 
 </code></pre></div>
-
 <h2>Reference Implementation</h2>
 <p>You can find a reference implementation on GitHub: <a href="https://github.com/minimob/video-ad-demo#">minimob/video-ad-demo</a></p>
-
 <h2>License</h2>
 <p>This is free and unencumbered software released into the public domain.</p>
 <p>Anyone is free to copy, modify, publish, use, compile, sell, or
