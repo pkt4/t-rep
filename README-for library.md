@@ -50,7 +50,9 @@ allprojects {
 }
 
 </code></pre>
+</ul>
 <h6>From Maven repository</h6>
+<ul>
     <li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
 <pre class="prettyprint linenums=5"><code>
 compile 'com.minimob.adserving:minimob-adserving:1.0.26'
