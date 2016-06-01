@@ -1,3 +1,4 @@
+<div>
 <div id="D-adtag-integration">
 <h2>Integrating VAST Video Ads using JavaScript Ad Tags</h2>
     <p>The JavaScript Ad Tag is a static script for requesting and displaying an ad within an HTML-based page. For implementing this, it is required to insert the JavaScript Ad Tag into the html code of a mobile web application or mobile in-app web controller.</p>
@@ -623,4 +624,4 @@ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,<br />
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR<br />
 OTHER DEALINGS IN THE SOFTWARE.</p>
     <p>For more information, please refer to <a href="http://unlicense.org/" target="_blank">http://unlicense.org</a></p>
-
+</div>

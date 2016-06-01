@@ -1,3 +1,4 @@
+<div>
 <div id="D-adtag-refimp">
 <h2>A Reference Implementation of VAST Video Ads using JavaScript Ad Tags</h2>
     <p>This project is an implementation of an Android app that can serve Video Ads from Minimob’s marketplace. This app demonstrates how to request and display VAST Video Ads using JavaScript Ad Tags.</p>
@@ -67,4 +68,4 @@ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,<br />
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR<br />
 OTHER DEALINGS IN THE SOFTWARE.</p>
     <p>For more information, please refer to <a href="http://unlicense.org/" target="_blank">http://unlicense.org</a></p>
-
+</div>
