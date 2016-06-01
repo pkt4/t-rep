@@ -1,75 +1,75 @@
 <div id="D-adtag-integration">
 <h2>Integrating VAST Video Ads using JavaScript Ad Tags</h2>
-<p>The JavaScript Ad Tag is a static script for requesting and displaying an ad within an HTML-based page. For implementing this, it is required to insert the JavaScript Ad Tag into the html code of a mobile web application or mobile in-app web controller. </p>
-<p>Note that this method is intended for real time ad serving and presentation, between the Minimob ad servers and mobile devices.  It cannot be used for server-to-server batch retrieval of ads. For each ad impression, a separate request must be made to the ad servers, supplying all the required information plus any additional data, if available. By specifying values at the parameters included at the ad tag, an application can forward extra information towards the ad servers, which can be useful for delivering better targeted ads.</p>
-<p>In case of preloading ads to an app, the lifetime of ads delivered should not exceed 5 minutes. If an application is open for periods longer than this duration, the app should refresh the presented ads at regular intervals well under that limit.</p>
+    <p>The JavaScript Ad Tag is a static script for requesting and displaying an ad within an HTML-based page. For implementing this, it is required to insert the JavaScript Ad Tag into the html code of a mobile web application or mobile in-app web controller.</p>
+    <p>Note that this method is intended for real time ad serving and presentation, between the Minimob ad servers and mobile devices.  It cannot be used for server-to-server batch retrieval of ads. For each ad impression, a separate request must be made to the ad servers, supplying all the required information plus any additional data, if available. By specifying values at the parameters included at the ad tag, an application can forward extra information towards the ad servers, which can be useful for delivering better targeted ads.</p>
+    <p>In case of preloading ads to an app, the lifetime of ads delivered should not exceed 5 minutes. If an application is open for periods longer than this duration, the app should refresh the presented ads at regular intervals well under that limit.</p>
 <h3>Prerequisites</h3>
-<p>Before you proceed, make sure that you already have:</p>
+    <p>Before you proceed, make sure that you already have:</p>
 <ol>
     <li>Registered to Minimob </li>
     <li>Created an app under <strong>Monetize &gt; Video Ads</strong> </li>
     <li>Created an ad zone under an app</li>
 </ol>
-<p>Then, follow the instructions given in this guide for enabling your app to request and display video ads from Minimob.</p>
+    <p>Then, follow the instructions given in this guide for enabling your app to request and display video ads from Minimob.</p>
 <h3>Workflow overview</h3>
-<p>When developing your app, you need to carry out the following tasks:</p>
+    <p>When developing your app, you need to carry out the following tasks:</p>
 <ol>
     <li>Import the Minimob ad-serving module to your project</li>
     <li>Use the imported module for requesting, loading and displaying video ads from Minimob</li>
 </ol>
 <h3>Importing the Minimob ad-serving module to your project</h3>
-<p>You can import the required Minimob ad-serving module either from the source code or from online repositories.</p>
+    <p>You can import the required Minimob ad-serving module either from the source code or from online repositories.</p>
 <h5>Importing the source code</h5>
-<p>First, download the current project from Github and import the <strong>minimob-adserving</strong> module to your project.</p>
-<p>Then, assuming you are using <strong>Gradle</strong>, go to the <strong>build.gradle</strong> script file of your app module and add the following line in the <strong>dependencies</strong> block:</p>
-<pre class="prettyprint linenums=5"><code>
-compile project(':minimob-adserving')
-
-</code></pre>
+    <p>First, download the current project from Github and import the <strong>minimob-adserving</strong> module to your project.</p>
+    <p>Then, assuming you are using <strong>Gradle</strong>, go to the <strong>build.gradle</strong> script file of your app module and add the following line in the <strong>dependencies</strong> block:</p>
+<pre class="prettyprint linenums=5">
+<code>compile project(':minimob-adserving')
+</code>
+</pre>
 <h5>Retrieving from online repositories</h5>
-<p>If you are using <strong>Gradle</strong>, you can automatically import the module from a Github or a Maven repository. </p>
+    <p>If you are using <strong>Gradle</strong>, you can automatically import the module from a Github or a Maven repository.</p>
 <h6>From Github repository</h6>
 <ul>
     <li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
-<pre class="prettyprint linenums=5"><code>
-compile 'com.github.minimob:video-ad-serving:1.0.26'
-
-</code></pre>
+<pre class="prettyprint linenums=5">
+<code>compile 'com.github.minimob:video-ad-serving:1.0.26'
+</code>
+</pre>
     <li>At the <strong>build.gradle</strong> script file of your <em>project</em>, add the following line in the <strong>repositories</strong> block:</li>
-<pre class="prettyprint linenums=5"><code>
- maven { url "https://jitpack.io" }
-
-</code></pre>
-<p>For example:</p>
-<pre class="prettyprint linenums=5"><code>
-allprojects {
+ <pre class="prettyprint linenums=5">
+<code>maven { url "https://jitpack.io" }
+</code>
+</pre>
+    <p>For example:</p>
+<pre class="prettyprint linenums=5">
+<code>allprojects {
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
     }
 }
-
-</code></pre>
+</code>
+</pre>
 </ul>
 <h6>From Maven repository</h6>
 <ul>
     <li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
-<pre class="prettyprint linenums=5"><code>
-compile 'com.minimob.adserving:minimob-adserving:1.0.26'
-
-</code></pre>
+<pre class="prettyprint linenums=5">
+<code>compile 'com.minimob.adserving:minimob-adserving:1.0.26'
+</code>
+</pre>
 </ul>
 <h3>Requesting, loading and displaying video ads from Minimob</h3>
-<p>Two distinct cases are distinguished:</p>
+    <p>Two distinct cases are distinguished:</p>
 <ul>
     <li><strong>Video ad</strong>: a single call –  <strong>.show ()</strong> – is used for loading and showing a video ad </li>
     <li><strong>Preloaded video ad</strong>: two separate calls are used, one for loading a video ad – <strong>.load()</strong> – and another for showing the video ad – <strong>.show()</strong> </li>
 </ul>
-<h5>Video ad </h5>
-<p>First, instantiate the <strong>AdZoneVideo</strong> class in your desired scope, named, for example, <strong>adZoneVideo</strong>.</p>
-<p>Then, at the point in your code where you want to show the video ad, include the following lines.</p>
-<pre class="prettyprint linenums=5"><code>
-// Create a method and include the following
+<h5>Video ad</h5>
+    <p>First, instantiate the <strong>AdZoneVideo</strong> class in your desired scope, named, for example, <strong>adZoneVideo</strong>.</p>
+    <p>Then, at the point in your code where you want to show the video ad, include the following lines.</p>
+<pre class="prettyprint linenums=5">
+<code>// Create a method and include the following
 
 // Use setAdZoneCreatedListener of MinimobAdController and override the onAdZoneCreated method
     MinimobAdController.getInstance().setAdZoneCreatedListener(new IAdZoneCreatedListener()
@@ -159,13 +159,13 @@ compile 'com.minimob.adserving:minimob-adserving:1.0.26'
 // Request the AdZone. The getVideo method needs an Activity as a parameter.
 // If you are in an Activity, you will use the Activity itself and if you are on a Fragment, use getActivity().
     MinimobAdController.getInstance().getVideo(getActivity(), adTag);
-
-</code></pre>
+</code>
+</pre>
 <h5>Preloaded video ad</h5>
-<p>First, instantiate the <strong>AdZoneVideo</strong> class in your desired scope, named, for example, <strong>adZoneVideo</strong>.</p>
-<p>Then, at the point in your code where you want to preload the video ad, include the following lines.</p>
-<pre class="prettyprint linenums=5"><code>
-// Create a method and include the following
+    <p>First, instantiate the <strong>AdZoneVideo</strong> class in your desired scope, named, for example, <strong>adZoneVideo</strong>.</p>
+    <p>Then, at the point in your code where you want to preload the video ad, include the following lines.</p>
+<pre class="prettyprint linenums=5">
+<code>// Create a method and include the following
 
 // Use setAdZoneCreatedListener of MinimobAdController and override the onAdZoneCreated method
     MinimobAdController.getInstance().setAdZoneCreatedListener(new IAdZoneCreatedListener()
@@ -268,11 +268,11 @@ compile 'com.minimob.adserving:minimob-adserving:1.0.26'
 // Request the AdZone. The getVideo method needs an Activity as a parameter.
 // If you are in an Activity, you will use the Activity itself and if you are on a Fragment, use getActivity().
     MinimobAdController.getInstance().getVideo(getActivity(), adTag);
-
-</code></pre>
-<p>Finally, at the point in your code where you want to show the video ad, you need to call the <strong>adZoneVideoPreloaded.show</strong> method. </p>
-<pre class="prettyprint linenums=5"><code>
-// assuming that you want to show the preloaded video when the user clicks the video_btnFullscreen_play button
+</code>
+</pre>
+    <p>Finally, at the point in your code where you want to show the video ad, you need to call the <strong>adZoneVideoPreloaded.show</strong> method.</p>
+<pre class="prettyprint linenums=5">
+<code>// assuming that you want to show the preloaded video when the user clicks the video_btnFullscreen_play button
 video_btnFullscreen_play = (Button) _activity.findViewById(R.id.video_btnFullscreen_play_preloaded);
 video_btnFullscreen_play.setOnClickListener(new View.OnClickListener()
 {
@@ -285,16 +285,15 @@ video_btnFullscreen_play.setOnClickListener(new View.OnClickListener()
         }
     }
 });
-
-</code></pre>
+</code>
+</pre>
 <h3>Ad Tag parameters</h3>
-<p>The JavaScript Ad Tag of an ad zone holds the following variables:</p>
+    <p>The JavaScript Ad Tag of an ad zone holds the following variables:</p>
 <ul>
     <li><strong>mmAdTagSettings</strong>: this variable contains parameters that are optional. They are used to pass extra information, such as device or user information, which can then be utilized by Minimob in order to return more relevant ads.</li>
     <li><strong>mmAdTagSettings_auto</strong>: this variable contains parameters that are mandatory. These parameters are automatically generated by Minimob and <strong>you should NOT modify them</strong>.</li>
 </ul>
 <h5>mmAdTagSettings Parameters</h5>
-<p> </p>
 <table>
   <tr>
     <th>Parameter</th>
@@ -305,82 +304,82 @@ video_btnFullscreen_play.setOnClickListener(new View.OnClickListener()
   <tr>
     <td>imei</td>
     <td>String</td>
-    <td>The International Mobile Station Equipment Identity number that uniquely identifies mobile phones
+    <td>The International Mobile Station Equipment Identity number that uniquely identifies mobile phones<br />
 Hashed MD5 or SHA1</td>
     <td>"d41d8cd98f00b204e9800998ecf8427e"</td>
   </tr>
   <tr>
     <td>android_id</td>
     <td>String</td>
-    <td>[android only]
-The Android ID of the device
+    <td>[android only]<br />
+The Android ID of the device<br />
 Hashed MD5 or SHA1</td>
     <td>"d3b4f06fc2bd14b417f39f7d7e72f47f"</td>
   </tr>
   <tr>
     <td>gaid</td>
     <td>String </td>
-    <td>[android only]
+    <td>[android only]<br />
 Raw (clear text) Google Advertising ID</td>
     <td>"3D016490-C470-4B04-99AD-B4FFF3330D46"</td>
   </tr>
   <tr>
     <td>idfa</td>
     <td>String </td>
-    <td>[iOS only]
+    <td>[iOS only]<br />
 Raw (clear text) Apple’s Identifier For Advertisers (IFA/IDFA)</td>
     <td>"236A005B-700F-4889-B9CE-999EAB2B605D"</td>
   </tr>
   <tr>
     <td>idfv</td>
     <td>String </td>
-    <td>[iOS only]
+    <td>[iOS only]<br />
 Raw (clear text) Apple’s Identifier For Vendor (IFA/IDFA)</td>
     <td>"599F9C00-92DC-4B5C-9464-7971F01F8370"</td>
   </tr>
   <tr>
     <td>category</td>
-    <td>Integer
+    <td>Integer<br />
 comma separated multiple values are allowed</td>
-    <td>The category ID of advertised apps, as defined by <a href="http://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-4-FINAL.pdf#">IAB</a>.
+    <td>The category ID of advertised apps, as defined by <a href="http://www.iab.com/wp-content/uploads/2016/03/OpenRTB-API-Specification-Version-2-4-FINAL.pdf" target="_blank">IAB</a>.<br />
 Category is used for filtering the ads. Several comma separated values can be specified to filter for multiple categories. Only ads from apps that belong to the specified categories will be served. </td>
     <td>"IAB1-1,IAB2"</td>
   </tr>
   <tr>
     <td>age</td>
     <td>Integer</td>
-    <td>The age of the device user
+    <td>The age of the device user<br />
 If omitted (i.e. null), it implies "unknown".</td>
     <td>"37"</td>
   </tr>
   <tr>
     <td>gender</td>
-    <td>String
+    <td>String<br />
 M = male, F = female, O = known to be other</td>
-    <td>The gender of the device user
+    <td>The gender of the device user <br />
 If omitted (i.e. null), it implies "unknown". </td>
     <td>"F"</td>
   </tr>
   <tr>
     <td>keywords</td>
-    <td>String
+    <td>String<br />
 comma separated multiple values are allowed</td>
     <td>List of keywords to filter ads by (e.g. list of interests of the device user)</td>
     <td>"fashion,sailing"</td>
   </tr>
   <tr>
     <td>lat</td>
-    <td>Float
+    <td>Float <br />
 from -90.0 to +90.0, where negative is south</td>
-    <td>Latitude of the mobile device
+    <td>Latitude of the mobile device<br />
 Should be used together with the <strong>lon</strong> parameter.</td>
     <td>"+10.2"</td>
   </tr>
   <tr>
     <td>lon</td>
-    <td>Float
+    <td>Float <br />
 from -180.0 to +180.0, where negative is west</td>
-    <td>Longitude of the mobile device
+    <td>Longitude of the mobile device <br />
 Should be used together with the <strong>lat</strong> parameter.</td>
     <td>"-102.8"</td>
   </tr>
@@ -388,75 +387,66 @@ Should be used together with the <strong>lat</strong> parameter.</td>
     <td>device_width</td>
     <td>Integer</td>
     <td>The width of the mobile device, in physical pixels</td>
-    <td>"1440"
-</td>
+    <td>"1440"</td>
   </tr>
   <tr>
     <td>device_height</td>
     <td>Integer</td>
     <td>The height of the mobile device, in physical pixels</td>
-    <td>"2560"
-</td>
+    <td>"2560"</td>
   </tr>
   <tr>
     <td>mnc</td>
     <td>Integer</td>
-    <td>The mobile network code of the mobile network operator of the mobile device
+    <td>The mobile network code of the mobile network operator of the mobile device<br />
 It is used in combination with the mobile country code (MCC) to uniquely identify the mobile phone operator/carrier.</td>
-    <td>"260"
-</td>
+    <td>"260"</td>
   </tr>
   <tr>
     <td>mcc</td>
     <td>Integer</td>
-    <td>The mobile country code of the mobile network operator of the mobile device
+    <td>The mobile country code of the mobile network operator of the mobile device<br />
 It is used in combination with the mobile network code (MNC) to uniquely identify the mobile phone operator/carrier.</td>
-    <td>" 310"
-</td>
+    <td>" 310"</td>
   </tr>
   <tr>
     <td>wifi</td>
     <td>Boolean</td>
-    <td>The network connection type of the mobile device
-true: indicates that the device is currently connected to the internet via WiFi
+    <td>The network connection type of the mobile device <br />
+true: indicates that the device is currently connected to the internet via WiFi<br />
 false: indicates that the current network connection of the device is NOT via WiFi </td>
-    <td>"true"
-</td>
+    <td>"true"</td>
   </tr>
   <tr>
     <td>ios_version</td>
     <td>String</td>
-    <td>[iOS only]
+    <td>[iOS only]<br />
 The iOS version of the operating system of the device </td>
-    <td>"7.1.2"
-</td>
+    <td>"7.1.2"</td>
   </tr>
   <tr>
     <td>android_version</td>
     <td>String</td>
-    <td>[android only]
+    <td>[android only]<br />
 The android version of the operating system of the device</td>
-    <td>"4.4.2"
-</td>
+    <td>"4.4.2"</td>
   </tr>
   <tr>
     <td>placement_width</td>
     <td>Integer</td>
     <td>The width of the advertising area within the app, where the ads are placed, in pixels</td>
-    <td>"720"
-</td>
+    <td>"720"</td>
   </tr>
   <tr>
     <td>placement_height</td>
     <td>Integer</td>
     <td>The height of the advertising area within the app, where the ads are placed, in pixels</td>
-    <td>"1280"
- </td>
+    <td>"1280"</td>
   </tr>
   <tr>
     <td>preload</td>
     <td>Boolean</td>
-    <td>true: indicates that the requested video ad will be preloaded
+    <td>true: indicates that the requested video ad will be preloaded<br />
 false: indicates that the requested video ad will NOT be preloaded</td>
     <td>"true"</td>
   </tr>
@@ -468,7 +458,6 @@ false: indicates that the requested video ad will NOT be preloaded</td>
   </tr>
 </table>
 <h5>mmAdTagSettings_auto Parameters</h5>
-<p> </p>
 <table>
   <tr>
     <th>Parameter</th>
@@ -491,14 +480,14 @@ false: indicates that the requested video ad will NOT be preloaded</td>
   <tr>
     <td>mobile_web</td>
     <td>string</td>
-    <td>true: for web app supported ads
+    <td>true: for web app supported ads <br />
 false: [default] for in-app supported ads </td>
     <td> false</td>
   </tr>
   <tr>
     <td>video_supported</td>
     <td>string</td>
-    <td>true: [default] for allowing video media supported ads
+    <td>true: [default] for allowing video media supported ads <br />
 false: for blocking video media supported ads</td>
     <td> true</td>
   </tr>
@@ -522,10 +511,10 @@ false: for blocking video media supported ads</td>
   </tr>
 </table>
 <h3>Examples</h3>
-<p>Here is an indicative example of an Ad Tag. </p>
+    <p>Here is an indicative example of an Ad Tag.</p>
 <blockquote><strong>Warning</strong>: Dummy Ids have been used in this example, so do not use it as is. Please navigate to Minimob’s Monetization dashboard for Video Ads and use the ad tag that is displayed at the details of the corresponding Ad Zone.</blockquote>
-<pre class="prettyprint linenums=5"><code>
-&lt;script&gt;
+<pre class="prettyprint linenums=5">
+<code>&lt;script&gt;
     var mmAdTagSettings = {
         imei: "[imei]",
         android_id: "[android_id]",
@@ -561,12 +550,12 @@ false: for blocking video media supported ads</td>
     };
 &lt;/script&gt;
 &lt;script id="sdk-loader" onerror="if(typeof(mmji)!='undefined'){mmji.noAds()}" type="text/javascript" src="http://s.rtad.bid/assets/video-fullscreen-mmji.js"&gt;&lt;/script&gt;
-
-</code></pre>
-<p>Here is an indicative example of generated html code.</p>
+</code>
+</pre>
+    <p>Here is an indicative example of generated html code.</p>
 <blockquote><strong>Warning</strong>: Dummy Ids have been used in this example.</blockquote>
-<pre class="prettyprint linenums=5"><code>
-&lt;html&gt;
+<pre class="prettyprint linenums=5">
+<code>&lt;html&gt;
     &lt;head&gt;
         &lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"&gt;
     &lt;/head&gt;
@@ -608,28 +597,30 @@ false: for blocking video media supported ads</td>
         &lt;script id="sdk-loader" onerror="if(typeof(mmji)!='undefined'){mmji.noAds()}" type="text/javascript" src="http://s.rtad.bid/assets/video-fullscreen-mmji.js"&gt;&lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
-
-</code></pre></div>
+</code>
+</pre>
+</div>
 <h2>Reference Implementation</h2>
-<p>You can find a reference implementation on GitHub: <a href="https://github.com/minimob/video-ad-demo#">minimob/video-ad-demo</a></p>
+    <p>You can find a reference implementation on GitHub: <a href="https://github.com/minimob/video-ad-demo" target="_blank">minimob/video-ad-demo</a></p>
 <h2>License</h2>
-<p>This is free and unencumbered software released into the public domain.</p>
-<p>Anyone is free to copy, modify, publish, use, compile, sell, or
-distribute this software, either in source code form or as a compiled
-binary, for any purpose, commercial or non-commercial, and by any
+    <p>This is free and unencumbered software released into the public domain.</p>
+    <p>Anyone is free to copy, modify, publish, use, compile, sell, or<br />
+distribute this software, either in source code form or as a compiled<br />
+binary, for any purpose, commercial or non-commercial, and by any<br />
 means.</p>
-<p>In jurisdictions that recognize copyright laws, the author or authors
-of this software dedicate any and all copyright interest in the
-software to the public domain. We make this dedication for the benefit
-of the public at large and to the detriment of our heirs and
-successors. We intend this dedication to be an overt act of
-relinquishment in perpetuity of all present and future rights to this
+    <p>In jurisdictions that recognize copyright laws, the author or authors<br />
+of this software dedicate any and all copyright interest in the<br />
+software to the public domain. We make this dedication for the benefit<br />
+of the public at large and to the detriment of our heirs and<br />
+successors. We intend this dedication to be an overt act of<br />
+relinquishment in perpetuity of all present and future rights to this<br />
 software under copyright law.</p>
-<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+    <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,<br />
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br />
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.<br />
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR<br />
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,<br />
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR<br />
 OTHER DEALINGS IN THE SOFTWARE.</p>
-<p>For more information, please refer to <a href="http://unlicense.org/#">http://unlicense.org</a> </p>
+    <p>For more information, please refer to <a href="http://unlicense.org/" target="_blank">http://unlicense.org</a></p>
+
