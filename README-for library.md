@@ -1,47 +1,48 @@
+<div id="D-Entire-document">
 <div id="D-adtag-integration">
 <h2>Integrating VAST Video Ads using JavaScript Ad Tags</h2>
-    <p>The JavaScript Ad Tag is a static script for requesting and displaying an ad within an HTML-based page. For implementing this, it is required to insert the JavaScript Ad Tag into the html code of a mobile web application or mobile in-app web controller.</p>
-    <p>Note that this method is intended for real time ad serving and presentation, between the Minimob ad servers and mobile devices.  It cannot be used for server-to-server batch retrieval of ads. For each ad impression, a separate request must be made to the ad servers, supplying all the required information plus any additional data, if available. By specifying values at the parameters included at the ad tag, an application can forward extra information towards the ad servers, which can be useful for delivering better targeted ads.</p>
-    <p>In case of preloading ads to an app, the lifetime of ads delivered should not exceed 5 minutes. If an application is open for periods longer than this duration, the app should refresh the presented ads at regular intervals well under that limit.</p>
+   <p>The JavaScript Ad Tag is a static script for requesting and displaying an ad within an HTML-based page. For implementing this, it is required to insert the JavaScript Ad Tag into the html code of a mobile web application or mobile in-app web controller.</p>
+   <p>Note that this method is intended for real time ad serving and presentation, between the Minimob ad servers and mobile devices.  It cannot be used for server-to-server batch retrieval of ads. For each ad impression, a separate request must be made to the ad servers, supplying all the required information plus any additional data, if available. By specifying values at the parameters included at the ad tag, an application can forward extra information towards the ad servers, which can be useful for delivering better targeted ads.</p>
+   <p>In case of preloading ads to an app, the lifetime of ads delivered should not exceed 5 minutes. If an application is open for periods longer than this duration, the app should refresh the presented ads at regular intervals well under that limit.</p>
 <h3>Prerequisites</h3>
-    <p>Before you proceed, make sure that you already have:</p>
+   <p>Before you proceed, make sure that you already have:</p>
 <ol>
     <li>Registered to Minimob </li>
     <li>Created an app under <strong>Monetize &gt; Video Ads</strong> </li>
-    <li>Created an ad zone under an app</li>
+    <li>Created an ad zone under an app </li>
 </ol>
-    <p>Then, follow the instructions given in this guide for enabling your app to request and display video ads from Minimob.</p>
+   <p>Then, follow the instructions given in this guide for enabling your app to request and display video ads from Minimob.</p>
 <h3>Workflow overview</h3>
-    <p>When developing your app, you need to carry out the following tasks:</p>
+   <p>When developing your app, you need to carry out the following tasks:</p>
 <ol>
     <li>Import the Minimob ad-serving module to your project</li>
-    <li>Use the imported module for requesting, loading and displaying video ads from Minimob</li>
+    <li>Use the imported module for requesting, loading and displaying video ads from Minimob </li>
 </ol>
 <h3>Importing the Minimob ad-serving module to your project</h3>
-    <p>You can import the required Minimob ad-serving module either from the source code or from online repositories.</p>
+   <p>You can import the required Minimob ad-serving module either from the source code or from online repositories.</p>
 <h5>Importing the source code</h5>
-    <p>First, download the current project from Github and import the <strong>minimob-adserving</strong> module to your project.</p>
-    <p>Then, assuming you are using <strong>Gradle</strong>, go to the <strong>build.gradle</strong> script file of your app module and add the following line in the <strong>dependencies</strong> block:</p>
-<pre class="prettyprint linenums=5">
+   <p>First, download the current project from Github and import the <strong>minimob-adserving</strong> module to your project.</p>
+   <p>Then, assuming you are using <strong>Gradle</strong>, go to the <strong>build.gradle</strong> script file of your app module and add the following line in the <strong>dependencies</strong> block:</p>
+<pre class="prettyprint linenums">
 <code>compile project(':minimob-adserving')
 </code>
 </pre>
 <h5>Retrieving from online repositories</h5>
-    <p>If you are using <strong>Gradle</strong>, you can automatically import the module from a Github or a Maven repository.</p>
+   <p>If you are using <strong>Gradle</strong>, you can automatically import the module from a Github or a Maven repository.</p>
 <h6>From Github repository</h6>
 <ul>
     <li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
-<pre class="prettyprint linenums=5">
+<pre class="prettyprint linenums">
 <code>compile 'com.github.minimob:video-ad-serving:1.0.26'
 </code>
 </pre>
     <li>At the <strong>build.gradle</strong> script file of your <em>project</em>, add the following line in the <strong>repositories</strong> block:</li>
- <pre class="prettyprint linenums=5">
+ <pre class="prettyprint linenums">
 <code>maven { url "https://jitpack.io" }
 </code>
 </pre>
-    <p>For example:</p>
-<pre class="prettyprint linenums=5">
+   <p>For example:</p>
+<pre class="prettyprint linenums">
 <code>allprojects {
     repositories {
         jcenter()
@@ -54,21 +55,21 @@
 <h6>From Maven repository</h6>
 <ul>
     <li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
-<pre class="prettyprint linenums=5">
+<pre class="prettyprint linenums">
 <code>compile 'com.minimob.adserving:minimob-adserving:1.0.26'
 </code>
 </pre>
 </ul>
 <h3>Requesting, loading and displaying video ads from Minimob</h3>
-    <p>Two distinct cases are distinguished:</p>
+   <p>Two distinct cases are supported:</p>
 <ul>
     <li><strong>Video ad</strong>: a single call –  <strong>.show ()</strong> – is used for loading and showing a video ad </li>
     <li><strong>Preloaded video ad</strong>: two separate calls are used, one for loading a video ad – <strong>.load()</strong> – and another for showing the video ad – <strong>.show()</strong> </li>
 </ul>
 <h5>Video ad</h5>
-    <p>First, instantiate the <strong>AdZoneVideo</strong> class in your desired scope, named, for example, <strong>adZoneVideo</strong>.</p>
-    <p>Then, at the point in your code where you want to show the video ad, include the following lines.</p>
-<pre class="prettyprint linenums=5">
+   <p>First, instantiate the <strong>AdZoneVideo</strong> class in your desired scope, named, for example, <strong>adZoneVideo</strong>.</p>
+   <p>Then, at the point in your code where you want to show the video ad, include the following lines.</p>
+<pre class="prettyprint linenums">
 <code>// Create a method and include the following
 
 // Use setAdZoneCreatedListener of MinimobAdController and override the onAdZoneCreated method
@@ -162,9 +163,9 @@
 </code>
 </pre>
 <h5>Preloaded video ad</h5>
-    <p>First, instantiate the <strong>AdZoneVideo</strong> class in your desired scope, named, for example, <strong>adZoneVideo</strong>.</p>
-    <p>Then, at the point in your code where you want to preload the video ad, include the following lines.</p>
-<pre class="prettyprint linenums=5">
+   <p>First, instantiate the <strong>AdZoneVideo</strong> class in your desired scope, named, for example, <strong>adZoneVideo</strong>.</p>
+   <p>Then, at the point in your code where you want to preload the video ad, include the following lines.</p>
+<pre class="prettyprint linenums">
 <code>// Create a method and include the following
 
 // Use setAdZoneCreatedListener of MinimobAdController and override the onAdZoneCreated method
@@ -270,8 +271,8 @@
     MinimobAdController.getInstance().getVideo(getActivity(), adTag);
 </code>
 </pre>
-    <p>Finally, at the point in your code where you want to show the video ad, you need to call the <strong>adZoneVideoPreloaded.show</strong> method.</p>
-<pre class="prettyprint linenums=5">
+   <p>Finally, at the point in your code where you want to show the video ad, you need to call the <strong>adZoneVideoPreloaded.show</strong> method.</p>
+<pre class="prettyprint linenums">
 <code>// assuming that you want to show the preloaded video when the user clicks the video_btnFullscreen_play button
 video_btnFullscreen_play = (Button) _activity.findViewById(R.id.video_btnFullscreen_play_preloaded);
 video_btnFullscreen_play.setOnClickListener(new View.OnClickListener()
@@ -288,11 +289,13 @@ video_btnFullscreen_play.setOnClickListener(new View.OnClickListener()
 </code>
 </pre>
 <h3>Ad Tag parameters</h3>
-    <p>The JavaScript Ad Tag of an ad zone holds the following variables:</p>
+   <p>The JavaScript Ad Tag of an ad zone holds the following variables:</p>
 <ul>
-    <li><strong>mmAdTagSettings</strong>: this variable contains parameters that are optional. They are used to pass extra information, such as device or user information, which can then be utilized by Minimob in order to return more relevant ads.</li>
-    <li><strong>mmAdTagSettings_auto</strong>: this variable contains parameters that are mandatory. These parameters are automatically generated by Minimob and <strong>you should NOT modify them</strong>.</li>
+    <li><strong>mmAdTagSettings</strong>: this variable contains parameters that are mainly used for passing device or user information; such information can then be utilized by Minimob in order to return more suitable and relevant ads.</li>
+    <li><strong>mmAdTagSettings_auto</strong>: this variable contains parameters that are required by the platform; they are automatically generated by Minimob.</li>
 </ul>
+<blockquote><strong>Warning</strong>: When copying the Ad Tag script of an Ad Zone and pasting it into your code, <strong>you should NOT delete or modify any of the parameters</strong> of the script. If you need to specify age, gender, category or any custom information, use the respective methods as described in the previous sections (<em>see</em> the inline comments at the code that you need to include).</blockquote>
+   <p>The parameters of each variable are described below.</p>
 <h5>mmAdTagSettings Parameters</h5>
 <table>
   <tr>
@@ -511,9 +514,9 @@ false: for blocking video media supported ads</td>
   </tr>
 </table>
 <h3>Examples</h3>
-    <p>Here is an indicative example of an Ad Tag.</p>
+   <p>Here is an indicative example of an Ad Tag.</p>
 <blockquote><strong>Warning</strong>: Dummy Ids have been used in this example, so do not use it as is. Please navigate to Minimob’s Monetization dashboard for Video Ads and use the ad tag that is displayed at the details of the corresponding Ad Zone.</blockquote>
-<pre class="prettyprint linenums=5">
+<pre class="prettyprint linenums">
 <code>&lt;script&gt;
     var mmAdTagSettings = {
         imei: "[imei]",
@@ -552,9 +555,9 @@ false: for blocking video media supported ads</td>
 &lt;script id="sdk-loader" onerror="if(typeof(mmji)!='undefined'){mmji.noAds()}" type="text/javascript" src="http://s.rtad.bid/assets/video-fullscreen-mmji.js"&gt;&lt;/script&gt;
 </code>
 </pre>
-    <p>Here is an indicative example of generated html code.</p>
+   <p>Here is an indicative example of generated html code.</p>
 <blockquote><strong>Warning</strong>: Dummy Ids have been used in this example.</blockquote>
-<pre class="prettyprint linenums=5">
+<pre class="prettyprint linenums">
 <code>&lt;html&gt;
     &lt;head&gt;
         &lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"&gt;
@@ -602,29 +605,29 @@ false: for blocking video media supported ads</td>
 </div>
 <div id="D-adtag-refimp">
 <h2>Reference Implementation</h2>
-    <p>You can find a reference implementation on GitHub: <a href="https://github.com/minimob/video-ad-demo" target="_blank">minimob/video-ad-demo</a></p>
+   <p>You can find a reference implementation on GitHub: <a href="https://github.com/minimob/video-ad-demo" target="_blank">minimob/video-ad-demo</a></p>
 </div>
 <div id="D-adtag-license">
 <h2>License</h2>
-    <p>This is free and unencumbered software released into the public domain.</p>
-    <p>Anyone is free to copy, modify, publish, use, compile, sell, or<br />
+   <p>This is free and unencumbered software released into the public domain.</p>
+   <p>Anyone is free to copy, modify, publish, use, compile, sell, or<br />
 distribute this software, either in source code form or as a compiled<br />
 binary, for any purpose, commercial or non-commercial, and by any<br />
 means.</p>
-    <p>In jurisdictions that recognize copyright laws, the author or authors<br />
+   <p>In jurisdictions that recognize copyright laws, the author or authors<br />
 of this software dedicate any and all copyright interest in the<br />
 software to the public domain. We make this dedication for the benefit<br />
 of the public at large and to the detriment of our heirs and<br />
 successors. We intend this dedication to be an overt act of<br />
 relinquishment in perpetuity of all present and future rights to this<br />
 software under copyright law.</p>
-    <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,<br />
+   <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,<br />
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br />
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.<br />
 IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR<br />
 OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,<br />
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR<br />
 OTHER DEALINGS IN THE SOFTWARE.</p>
-    <p>For more information, please refer to <a href="http://unlicense.org/" target="_blank">http://unlicense.org</a></p>
+   <p>For more information, please refer to <a href="http://unlicense.org/" target="_blank">http://unlicense.org</a></p>
 </div>
-
+</div>
