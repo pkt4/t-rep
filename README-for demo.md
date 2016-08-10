@@ -18,7 +18,7 @@
     <li>Using the imported module for requesting, loading and displaying video ads from Minimob </li>
 </ol>
 <h3>Updating the app’s manifest file</h3>
-   <p>At the app’s <code>AndroidManifest.xml</code> file, the following line has been added in the &lt;<code>application&gt;</code> node so that hardware-accelerated rendering is enabled for all activities and views in the application:</p>
+   <p>At the app’s <code>AndroidManifest.xml</code> file, the following line has been added in the <code>&lt;application&gt;</code> node so that hardware-accelerated rendering is enabled for all activities and views in the application:</p>
 <pre class="prettyprint linenums">
 <code>android:hardwareAccelerated="true"
 </code>
@@ -29,7 +29,7 @@
 <ol>
     <li>At the <strong>build.gradle</strong> script file of <em>minimob-addemos module</em>, the following line was added in the <strong>dependencies</strong> block:</li>
 <pre class="prettyprint linenums">
-<code>compile 'com.github.minimob:video-ad-serving:1.0.26'
+<code>compile 'com.github.minimob:video-ad-serving:1.0.28'
 </code>
 </pre>
     <li>At the <strong>build.gradle</strong> script file of the <em>project</em>, the following line was added in the <strong>repositories</strong> block:</li>
