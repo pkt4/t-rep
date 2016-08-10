@@ -20,7 +20,7 @@
     <li>Use the imported module for requesting, loading and displaying video ads from Minimob </li>
 </ol>
 <h3>Updating the app’s manifest file</h3>
-   <p>Hardware-accelerated rendering must be enabled for all activities and views in the application. At the app’s <code>AndroidManifest.xml</code> file, add the following line in the &lt;<code>application&gt;</code> node:</p>
+   <p>Hardware-accelerated rendering must be enabled for all activities and views in the application. At the app’s <code>AndroidManifest.xml</code> file, add the following line in the <code>&lt;application&gt;</code> node:</p>
 <pre class="prettyprint linenums">
 <code>android:hardwareAccelerated="true"
 </code>
@@ -40,7 +40,7 @@
 <ul>
     <li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
 <pre class="prettyprint linenums">
-<code>compile 'com.github.minimob:video-ad-serving:1.0.26'
+<code>compile 'com.github.minimob:video-ad-serving:1.0.28'
 </code>
 </pre>
     <li>At the <strong>build.gradle</strong> script file of your <em>project</em>, add the following line in the <strong>repositories</strong> block:</li>
@@ -63,7 +63,7 @@
 <ul>
     <li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
 <pre class="prettyprint linenums">
-<code>compile 'com.minimob.adserving:minimob-adserving:1.0.26'
+<code>compile 'com.minimob.adserving:minimob-adserving:1.0.28'
 </code>
 </pre>
 </ul>
