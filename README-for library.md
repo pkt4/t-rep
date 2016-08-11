@@ -20,7 +20,7 @@
     <li>Use the imported module for requesting, loading and displaying video ads from Minimob </li>
 </ol>
 <h3>Updating the app’s manifest file</h3>
-   <p>Hardware-accelerated rendering must be enabled for all activities and views in the application. At the app’s <code>AndroidManifest.xml</code> file, add the following line in the <code>&lt;application&gt;</code> node:</p>
+   <p>At the app’s <code>AndroidManifest.xml</code> file, add the following line in the <code>&lt;application&gt;</code> node (it enables hardware-accelerated rendering for all activities and views in the application):</p>
 <pre class="prettyprint linenums">
 <code>android:hardwareAccelerated="true"
 </code>
