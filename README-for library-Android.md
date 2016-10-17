@@ -40,7 +40,7 @@
 <ul>
     <li>At the <strong>build.gradle</strong> script file of your <em>app module</em>, add the following line in the <strong>dependencies</strong> block:</li>
 <pre class="prettyprint linenums">
-<code>compile 'com.github.minimob:video-ad-serving:1.0.28'
+<code>compile 'com.github.minimob:video-ad-serving-android:1.0.28'
 </code>
 </pre>
     <li>At the <strong>build.gradle</strong> script file of your <em>project</em>, add the following line in the <strong>repositories</strong> block:</li>
@@ -612,7 +612,7 @@ false: for blocking video media supported ads</td>
 </div>
 <div id="D-adtag-refimp">
 <h2>Reference Implementation</h2>
-   <p>You can find a reference implementation on GitHub: <a href="https://github.com/minimob/video-ad-demo" target="_blank">minimob/video-ad-demo</a></p>
+   <p>You can find a reference implementation on GitHub: <a href="https://github.com/minimob/video-ad-demo-android" target="_blank">minimob/video-ad-demo-android</a></p>
 </div>
 <div id="D-adtag-license">
 <h2>License</h2>
