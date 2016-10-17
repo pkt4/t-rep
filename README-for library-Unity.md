@@ -55,6 +55,7 @@
     <li>The 2nd parameter is a string of custom tracking data that you want to pass.</li>
     <li>The 3rd parameter is a callback that will be called when the <strong>AdZone</strong> is created.</li>
     <li>The 4th parameter specifies whether the video will be preloaded or not.</li>
+</ul>
    <p>When the creation callback is called you can call <strong>ShowVideo()</strong> directly to play the video.</p>
    <p>At the point in your code where you want to show the video ad, include the following lines.</p>
 <pre class="prettyprint linenums">
@@ -136,6 +137,7 @@
 </pre>
 <h5>Preloaded video ad</h5>
    <p>To preload and play a video ad, you must use the <strong>CreateVideo</strong> method of <strong>MinimobVideoAdPlayer</strong>. The method takes the following parameters:</p>
+<ul>
     <li>The 1st parameter is the <strong>AdTagString</strong> that your get from your <strong>Minimob Dashboard</strong> for your <strong>AdZone</strong>.</li>
     <li>The 2nd parameter is a string of custom tracking data that you want to pass.</li>
     <li>The 3rd parameter is a callback that will be called when the <strong>AdZone</strong> is created.</li>
@@ -552,10 +554,6 @@ false: for blocking video media supported ads</td>
 &lt;/html&gt;
 </code>
 </pre>
-</div>
-<div id="D-adtag-refimp">
-<h2>Reference Implementation</h2>
-   <p>You can find a reference implementation on GitHub: <a href="https://github.com/minimob/video-ad-demo" target="_blank">minimob/video-ad-demo</a></p>
 </div>
 <div id="D-adtag-license">
 <h2>License</h2>
