@@ -1,5 +1,5 @@
 <div id="D-Entire-document">
-<div id="D-adtag-refimp">
+<div id="D-adtag-refimp-android">
 <h2>A Reference Implementation of VAST Video Ads using JavaScript Ad Tags</h2>
    <p>This project is an implementation of an Android app that can serve Video Ads from Minimob’s marketplace. This app demonstrates how to request and display VAST Video Ads using JavaScript Ad Tags.</p>
 <h3>Before starting the project</h3>
@@ -54,7 +54,7 @@
    <p>You can get this demo app on Google Play at: <a href="https://play.google.com/store/apps/details?id=com.minimob.addemos" target="_blank">Minimob demos</a></p>
    <p>Further integration instructions as well as more detailed information about the parameters used at the JavaScript Ad Tag can be found at the <a href="https://github.com/minimob/video-ad-serving-android" target="_blank">Minimob video-ad-serving-android project</a></p>
 </div>
-<div id="D-adtag-license">
+<div id="D-adtag-license-android">
 <h2>License</h2>
    <p>This is free and unencumbered software released into the public domain.</p>
    <p>Anyone is free to copy, modify, publish, use, compile, sell, or<br />
