@@ -1,5 +1,4 @@
 <div id="D-Entire-document">
-<div id="D-adtag-refimp-unity">
 <h2>A Reference Implementation of VAST Video Ads using JavaScript Ad Tags, with Unity</h2>
    <p>The JavaScript Ad Tag is a static script for requesting and displaying an ad within an HTML-based page. For implementing this, it is required to insert the JavaScript Ad Tag into the html code of a mobile web application or mobile in-app web controller.</p>
    <p>Note that this method is intended for real time ad serving and presentation, between the Minimob ad servers and mobile devices.  It cannot be used for server-to-server batch retrieval of ads. For each ad impression, a separate request must be made to the ad servers, supplying all the required information plus any additional data, if available. By specifying values at the parameters included at the ad tag, an application can forward extra information towards the ad servers, which can be useful for delivering better targeted ads.</p>
@@ -109,24 +108,24 @@ videoPlayer.CreateAdZone(adTagString, customTrackingData, () =&gt;
 // Optionally, set the delegates for the supported events:
 // ads available, ads NOT available, video playing, video finished, video closed
 // This enables you to customize the user experience according to the needs of your app
-// OnAdsAvailableAction is called when there are ads available and will be invoked after a call to ShowVideo() or PreloadVideo()
+// onAdsAvailableAction is called when there are ads available and will be invoked after a call to ShowVideo()
 videoPlayer.onAdsAvailableAction = () =&gt;
 {
 };
-// OnAdsNotAvailableAction is called when there are no ads available and it will be invoked after a call to ShowVideo() or PreloadVideo()
+// onAdsNotAvailableAction is called when there are no ads available and it will be invoked after a call to ShowVideo()
 videoPlayer.onAdsNotAvailableAction = () =&gt;
 {
 };
-// OnVideoPlayingAction is called when the video starts playing
+// onVideoPlayingAction is called when the video starts playing
 videoPlayer.onVideoPlayingAction = () =&gt;
 {
 };
-// OnVideoFinishedAction is called when the video has finished playing.
+// onVideoFinishedAction is called when the video has finished playing.
 // This means that the user watched the whole video and it is a good place to give a reward if you want to incentivize the action.
 videoPlayer.onVideoFinishedAction = () =&gt;
 {
 };
-// OnVideoClosedAction is called when the user closes the Video Ad before it has finished
+// onVideoClosedAction is called when the user closes the Video Ad before it has finished
 videoPlayer.onVideoClosedAction = () =&gt;
 {
 };
@@ -193,32 +192,32 @@ videoPlayer.CreateAdZone(adTagString, customTrackingData, () =&gt;
 // Optionally, set the delegates for the supported events:
 // ads available, ads NOT available, video loading, video loaded, video playing, video finished, video closed
 // This enables you to customize the user experience according to the needs of your app
-// OnAdsAvailableAction is called when there are ads available and will be invoked after a call to ShowVideo() or PreloadVideo()
+// onAdsAvailableAction is called when there are ads available and will be invoked after a call to LoadVideo()
 videoPlayer.onAdsAvailableAction = () =&gt;
 {
 };
-// OnAdsNotAvailableAction is called when there are no ads available and it will be invoked after a call to ShowVideo() or PreloadVideo()
+// onAdsNotAvailableAction is called when there are no ads available and it will be invoked after a call to LoadVideo()
 videoPlayer.onAdsNotAvailableAction = () =&gt;
 {
 };
-// OnVideoLoadingAction is called when the video is loading
-videoPlayer.OnVideoLoadingAction = () =&gt;
+// onVideoLoadingAction is called when the video is loading
+videoPlayer.onVideoLoadingAction = () =&gt;
 {
 };
-// OnVideoLoadedAction is called when the video has finished loading
-videoPlayer.OnVideoLoadedAction = () =&gt;
+// onVideoLoadedAction is called when the video has finished loading
+videoPlayer.onVideoLoadedAction = () =&gt;
 {
 };
-// OnVideoPlayingAction is called when the video starts playing
+// onVideoPlayingAction is called when the video starts playing
 videoPlayer.onVideoPlayingAction = () =&gt;
 {
 };
-// OnVideoFinishedAction is called when the video has finished playing.
+// onVideoFinishedAction is called when the video has finished playing.
 // This means that the user watched the whole video and it is a good place to give a reward if you want to incentivize the action.
 videoPlayer.onVideoFinishedAction = () =&gt;
 {
 };
-// OnVideoClosedAction is called when the user closes the Video Ad before it has finished
+// onVideoClosedAction is called when the user closes the Video Ad before it has finished
 videoPlayer.onVideoClosedAction = () =&gt;
 {
 };
@@ -227,8 +226,11 @@ videoPlayer.onVideoClosedAction = () =&gt;
    <p>Once the video has finished loading, the <strong>onVideoLoadedAction</strong> callback will be invoked.</p>
    <p>At the point in your code where you want to play the video, you need to call the <strong>ShowVideo()</strong> method.</p>
 <pre class="prettyprint linenums">
-<code>// Show the video
-videoPlayer.ShowVideo();
+<code>if (videoPlayer != null)
+{
+    // Show the video
+    videoPlayer.ShowVideo();
+}
 </code>
 </pre>
 <h3>Ad Tag parameters</h3>
