@@ -1,4 +1,5 @@
 <div id="D-Entire-document">
+<div id="D-adtag-refimp-unity">
 <h2>A Reference Implementation of VAST Video Ads using JavaScript Ad Tags, with Unity</h2>
    <p>The JavaScript Ad Tag is a static script for requesting and displaying an ad within an HTML-based page. For implementing this, it is required to insert the JavaScript Ad Tag into the html code of a mobile web application or mobile in-app web controller.</p>
    <p>Note that this method is intended for real time ad serving and presentation, between the Minimob ad servers and mobile devices.  It cannot be used for server-to-server batch retrieval of ads. For each ad impression, a separate request must be made to the ad servers, supplying all the required information plus any additional data, if available. By specifying values at the parameters included at the ad tag, an application can forward extra information towards the ad servers, which can be useful for delivering better targeted ads.</p>
@@ -547,4 +548,28 @@ false: for blocking video media supported ads</td>
 &lt;/html&gt;
 </code>
 </pre>
+</div>
+<div id="D-adtag-license-unity">
+<h2>License</h2>
+   <p>This is free and unencumbered software released into the public domain.</p>
+   <p>Anyone is free to copy, modify, publish, use, compile, sell, or<br />
+distribute this software, either in source code form or as a compiled<br />
+binary, for any purpose, commercial or non-commercial, and by any<br />
+means.</p>
+   <p>In jurisdictions that recognize copyright laws, the author or authors<br />
+of this software dedicate any and all copyright interest in the<br />
+software to the public domain. We make this dedication for the benefit<br />
+of the public at large and to the detriment of our heirs and<br />
+successors. We intend this dedication to be an overt act of<br />
+relinquishment in perpetuity of all present and future rights to this<br />
+software under copyright law.</p>
+   <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,<br />
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF<br />
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.<br />
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR<br />
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,<br />
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR<br />
+OTHER DEALINGS IN THE SOFTWARE.</p>
+   <p>For more information, please refer to <a href="http://unlicense.org/" target="_blank">http://unlicense.org</a></p>
+</div>
 </div>
